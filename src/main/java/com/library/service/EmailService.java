@@ -16,7 +16,6 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class EmailService {
-
     
     private final JavaMailSender javaMailSender;
     private final SpringTemplateEngine springTemplateEngine;
@@ -38,7 +37,6 @@ public class EmailService {
         properties.put("activationCode", activationCode);
 
         Context context = new Context();
-        //TODO: Gmail mail 
         context.setVariables(properties);
         mimeMessageHelper.setFrom("Library Management System <librarian@library.management.com>");
         mimeMessageHelper.setTo(to);

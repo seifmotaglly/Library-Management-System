@@ -3,6 +3,7 @@
 import com.library.model.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -25,7 +26,7 @@ public class Borrowing extends BaseEntity{
     @GeneratedValue
     @Column(insertable = false)
     private Integer borrowingId;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "patronId")
     private Patron patron;
     @ManyToOne

@@ -5,6 +5,7 @@ import com.library.model.BaseEntity;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -35,11 +36,11 @@ public class Book extends BaseEntity {
     @Column(insertable = false, columnDefinition = "boolean default true")
     private boolean borrowable;
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "patronId")
     private Patron bookPatron;
 
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "book")
     private List<Borrowing> borrowingRecords;
 
 }

@@ -4,9 +4,13 @@ import java.security.Principal;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
@@ -42,9 +46,11 @@ public class Patron implements UserDetails, Principal {
     private boolean enabled;
     
     @OneToMany(mappedBy = "bookPatron")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Book> books;
 
     @OneToMany(mappedBy = "patron")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Borrowing> borrowingRecords;
 
     @Override

@@ -1,7 +1,6 @@
 package com.library.service;
 
 import java.time.LocalDateTime;
-
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import com.library.dao.BookDao;
@@ -25,7 +24,6 @@ public class BorrowingService {
     private final PatronDao patronDao;
 
     public Integer borrowBook(Integer bookId, Authentication authenticatedPatron) {
-        // TODO:error handling
         Book book = bookDao.findById(bookId).orElseThrow(() -> new EntityNotFoundException("Book not found"));
         if (!book.isBorrowable()) {
             throw new OperationNotPermittedException("Book is already borrowed");
@@ -54,7 +52,6 @@ public class BorrowingService {
     }
 
     public Integer returnBook(Integer bookId, Authentication authenticatedPatron) {
-        // TODO:error handling
         Book book = bookDao.findById(bookId).orElseThrow(() -> new EntityNotFoundException("Book not found"));
         if (book.isBorrowable()) {
             throw new OperationNotPermittedException("Book is already returned");

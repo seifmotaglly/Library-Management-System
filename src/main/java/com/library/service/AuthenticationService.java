@@ -4,13 +4,11 @@ import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import com.library.dao.PatronDao;
 import com.library.dao.TokenDao;
 import com.library.entity.Patron;
@@ -19,7 +17,6 @@ import com.library.model.AuthenticateRequest;
 import com.library.model.AuthenticateResponse;
 import com.library.model.EmailTemplate;
 import com.library.model.RegisterRequest;
-
 import jakarta.mail.MessagingException;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -54,7 +51,7 @@ public class AuthenticationService {
         String token = generateAndSaveActivationToken(patron);
 
         emailService.sendEmail(patron.getPatronEmail(), patron.getPatronFirstName(), EmailTemplate.ACTIVATION,
-                "http://localhost:4200/activate", token, "Activate your account");// TODO: change url
+                "http://localhost:4200/activate", token, "Activate your account");
 
     }
 
@@ -100,9 +97,7 @@ public class AuthenticationService {
 
     @Transactional
     public void activateAccount(String token) throws MessagingException {
-        Token savedToken = tokenDao.findByToken(token).orElseThrow(() -> new RuntimeException("Token not found")); // TODO:
-                                                                                                                   // handle
-                                                                                                                   // exception
+        Token savedToken = tokenDao.findByToken(token).orElseThrow(() -> new RuntimeException("Token not found"));
 
         if (savedToken.getExpiresAt().isBefore(LocalDateTime.now())) {
             sendValidationEmail(savedToken.getPatron());
