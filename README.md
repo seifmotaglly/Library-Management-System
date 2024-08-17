@@ -89,11 +89,11 @@ The API uses HTTPS encryption to secure data transmission. The API also uses JWT
 To install the application, follow these steps:
 
 1. Clone the repository: `git clone https://github.com/seifmotaglly/Library-Management-System.git`
-2. Change into the project directory: `cd library-management-application`
+2. Change into the project directory: `cd Library-Management-System`
 3. Build the project: `mvn clean package`
-4. Create a MySQL database and user: `mysql -u root -p < database.sql`
-5. Configure the application.properties file: `cp application.properties.example application.properties`
-6. Run the application: `java -jar target/library-management-application.jar`
+4. Create a MySQL database:`//localhost:3306/libraryDB`
+5. Create a MySQL user and password: `mysql -u root -p root < libraryDB.sql`
+6. Run the application: `java -jar target/Library-Management-0.0.1-SNAPSHOT.jar`
 
 ## Usage
 
