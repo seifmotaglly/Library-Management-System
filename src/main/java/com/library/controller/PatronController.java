@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 @RestController
-@RequestMapping("/patrons")
+@RequestMapping("api/patrons")
 @RequiredArgsConstructor
 public class PatronController {
     private final PatronService patronService;
