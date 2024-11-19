@@ -114,4 +114,3 @@ The application provides a RESTful API for interacting with the library data. AP
 * Maven for providing a convenient build and dependency management tool
 * Email Serivce for providing a convenient way to send emails to users to activate accounts
 * Swagger for providing API documentation
-* Bootstrap for providing a responsive and mobile-friendly user interface
